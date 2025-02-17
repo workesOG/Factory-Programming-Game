@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 934045735231539271}
   - component: {fileID: 8840239685184125870}
   m_Layer: 5
-  m_Name: Store
+  m_Name: Materials
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
