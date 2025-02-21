@@ -148,14 +148,22 @@ MonoBehaviour:
       m_Calls: []
   m_text: "To My Grandchild,\n\nIf you're reading this, it means I\u2019ve chopped
     my last log and stacked my last plank. But don\u2019t you go feeling sad for
-    me\u2014I had a good run. And now, it\u2019s your turn. I always knew you had
-    a sharp mind, and this old sawmill needs someone with brains to keep it running.\n\nNow,
+    me, I had a good run. And now, it\u2019s your turn. I always knew you had a sharp
+    mind, and this old sawmill needs someone with brains to keep it running.\n\nNow,
     this place is no ordinary sawmill. I made a few improvements over the years.
-    Everything runs on code\u2014programming, to be exact. Sounds fancy, but don\u2019t
+    Everything runs on code, programming, to be exact. Sounds fancy, but don\u2019t
     you worry, I left some notes:\n\nThe Logs: You\u2019ll get deliveries of raw
     logs. Your job is to turn them into planks.\n\nThe Machines: The saw, the conveyor
-    belt, the sorter\u2014each machine takes a simple command to operate.\n\nThe
-    Code: You don\u2019t push buttons here; you write instructions. For example:"
+    belt, the sorter, each machine takes a simple command to operate.\n\nThe Code:
+    You don\u2019t push buttons here; you write instructions. For example:\nsaw.cut(log)\nconveyor.move(plank)\n\nThe
+    saw cuts, the conveyor moves, and before you know it, you\u2019ve got yourself
+    a stack of planks ready to sell.\n\nThe Orders: Customers will place orders for
+    wood. You\u2019ll need to write the right scripts to produce exactly what they
+    need. Efficiency matters\u2014waste too much wood, and profits drop.\nFinal Advice,
+    don\u2019t be afraid to tinker. Experiment. Debug. This place is yours now. If
+    you mess up, well, that\u2019s part of learning. And if you ever feel like cursing
+    me for making things so complicated\u2026 just remember, I believe in you.\n\nNow,
+    go on. Fire up the mill. Make me proud.\n\n\u2014Grandpops"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
