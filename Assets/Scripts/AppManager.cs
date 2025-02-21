@@ -31,6 +31,7 @@ public class AppManager : MonoBehaviour
         { 4, null },
         { 5, null },
         { 6, null },
+        { 7, null },
     };
 
     private AppManager()
@@ -63,6 +64,7 @@ public class AppManager : MonoBehaviour
         if (foundApp == null)
         {
             GameObject window = Instantiate(apps[appID], appWindow, true);
+            HandleAppInitialization(appID, window.transform);
             RectTransform rect = window.GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector2(0, 0);
             rect.localScale = new Vector3(1, 1, 1);
@@ -72,6 +74,7 @@ public class AppManager : MonoBehaviour
         {
             foundApp.Show();
         }
+        HandleAppOnShow(appID);
         int oldAppID = currentAppID;
         currentAppID = appID;
 
@@ -107,6 +110,53 @@ public class AppManager : MonoBehaviour
         }
 
         foundApp.Hide();
+    }
+
+    private void HandleAppInitialization(int appID, Transform window)
+    {
+        switch (appID)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                MailManager.Instance.Initialize(window);
+                break;
+            case 7:
+                break;
+        }
+    }
+
+    private void HandleAppOnShow(int appID)
+    {
+        switch (appID)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
     }
 }
 
