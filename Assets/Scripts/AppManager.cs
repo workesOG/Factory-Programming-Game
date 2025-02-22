@@ -17,7 +17,11 @@ public class AppManager : MonoBehaviour
     {
         get
         {
-            if (_instance == null) _instance = new AppManager();
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<AppManager>();
+            }
+
             return _instance;
         }
     }
@@ -34,9 +38,9 @@ public class AppManager : MonoBehaviour
         { 7, null },
     };
 
-    private AppManager()
+    void Awake()
     {
-        //the constructor is private so that you can't instantiate it
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

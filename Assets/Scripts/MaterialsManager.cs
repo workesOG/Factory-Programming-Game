@@ -1,18 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MaterialsManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private List<Material> gameMaterials;
+
+    [HideInInspector]
+    public List<Material> materials;
+
+    private static MaterialsManager _instance;
+    public static MaterialsManager Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<MaterialsManager>();
+            }
+
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 }
+
+[Serializable]
+public class Material
+{
+    public enum Tier
+    {
+        Tier1,
+        Tier2,
+        Tier3
+    }
+
+    public string name;
+    public double purchasePrice;
+    public double sellPrice;
+    public bool unlocked;
+    public double licensePrice;
+    public Tier tier;
+    public Sprite icon;
+    public Color iconColor;
+
+    public int amount;
+}
+
