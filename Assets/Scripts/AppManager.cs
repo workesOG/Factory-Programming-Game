@@ -51,15 +51,14 @@ public class AppManager : MonoBehaviour
 
     public void AssociateDict()
     {
-        foreach (var kvp in apps)
+        for (int i = 0; i < applications.Count; i++)
         {
-            apps[kvp.Key] = applications[kvp.Key];
+            apps[i] = applications[i];
         }
     }
 
     public void ShowApp(int appID)
     {
-        Debug.Log("Showing app" + appID);
         OpenedApp foundApp = OpenedApp.Find(appID, openedApps);
         if (foundApp == null)
         {
@@ -87,7 +86,6 @@ public class AppManager : MonoBehaviour
         OpenedApp foundApp = OpenedApp.Find(appID, openedApps);
         if (foundApp == null)
         {
-            Debug.LogWarning("App with id: " + appID + " cannot be closed, because it was not found!");
             return;
         }
 

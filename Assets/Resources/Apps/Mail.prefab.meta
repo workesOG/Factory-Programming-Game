@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 0669dfce690cba8498049d8b6da2c713
+<<<<<<<< Updated upstream:Assets/Resources/Apps/Warehouse.prefab.meta
+guid: b4e6d2a9cd7bb7c4fa13ed30efbf54d4
+========
+guid: eb9dbeff6b9dca148b5b20b6ab10acdd
+>>>>>>>> Stashed changes:Assets/Resources/Apps/Mail THEIS.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

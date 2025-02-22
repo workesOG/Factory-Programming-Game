@@ -39,17 +39,13 @@ public class MailManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        //RecieveMail("");
-    }
-
     public void Initialize(Transform windowTransform)
     {
         mailWindow = windowTransform.Find("Reader Window/Main Scroll/Viewport/Content");
         listWindow = windowTransform.Find("List/Mails Scroll View/Viewport/Content");
         loadUnread = windowTransform.Find("List/Show Unread Button").GetComponent<Button>();
         loadRead = windowTransform.Find("List/Show Read Button").GetComponent<Button>();
+        LoadMails(false);
     }
 
     public void ClearReferenceLists()
@@ -71,6 +67,7 @@ public class MailManager : MonoBehaviour
         {
             GameObject listElement = Instantiate(Resources.Load<GameObject>("Prefabs/Mail List Element"), listWindow);
             MailListElement element = listElement.AddComponent<MailListElement>();
+            mailListElements.Add(element);
             element.associatedMailTitle = mail.title;
             element.Initialize();
             dividers.Add(Instantiate(Resources.Load<GameObject>("Prefabs/Mail List Element Divider"), listWindow));
@@ -98,6 +95,7 @@ public class MailManager : MonoBehaviour
 
         currentlyLoadedMailGO = Instantiate(foundMail.mailPrefab, mailWindow, false);
         currentlyLoadedMail = foundMail.title;
+        Debug.Log($"{mailListElements[0].associatedMailTitle} / {foundMail.title}");
         mailListElements.Find(x => x.associatedMailTitle == foundMail.title).SetButtonInteractableState(false);
 
         if (foundMail.read == false)
@@ -109,7 +107,6 @@ public class MailManager : MonoBehaviour
         Mail foundMail = FindMail(title);
         if (foundMail == null)
         {
-            Debug.LogWarning($"Mail {title} was not found!");
             return;
         }
         foundMail.recieved = true;

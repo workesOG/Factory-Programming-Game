@@ -3099,7 +3099,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8572091856229964824, guid: b4e6d2a9cd7bb7c4fa13ed30efbf54d4, type: 3}
   - {fileID: 0}
 --- !u!1 &1049695572
 GameObject:
@@ -3205,7 +3205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaf565aa523c67419f9d0990fbfffde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mails: []
+  mails:
+  - title: Intro Mail
+    recieved: 1
+    read: 0
+    mailPrefab: {fileID: 376808042255802902, guid: 98fc143ab8d4ba14389aa9033b7201f8, type: 3}
   loadUnread: {fileID: 0}
   loadRead: {fileID: 0}
 --- !u!4 &1081515210
