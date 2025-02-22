@@ -123,6 +123,7 @@ public class AppManager : MonoBehaviour
             case 1:
                 break;
             case 2:
+                MaterialsManager.Instance.Initialize(window);
                 break;
             case 3:
                 break;

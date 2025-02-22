@@ -3415,11 +3415,11 @@ MonoBehaviour:
   appWindow: {fileID: 475388337}
   applications:
   - {fileID: 2493311812644664320, guid: e679b5e7323e99c4abd49aa61b90483a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7772483713427764754, guid: 07141c73c2c5a7343919adaba982c0c0, type: 3}
+  - {fileID: 9000762210978931687, guid: 8a455825c41c50643ad229bd636e4b41, type: 3}
+  - {fileID: 4931614429483205720, guid: 314762e402f5ca04a9835559407e7848, type: 3}
+  - {fileID: 7772483713427764754, guid: 4af972b1d8f53a34fb9fada815899351, type: 3}
+  - {fileID: 3506906605578930899, guid: 659b9c70ec4d1154687aca01ebaa38a1, type: 3}
   - {fileID: 8572091856229964824, guid: b4e6d2a9cd7bb7c4fa13ed30efbf54d4, type: 3}
   - {fileID: 0}
 --- !u!1 &1049695572
@@ -3652,31 +3652,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMaterials:
   - name: Pine
-    purchasePrice: 0.23
+    buyPrice: 0.23
     sellPrice: 0
     unlocked: 1
     licensePrice: 0
     tier: 0
     icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.6117647, g: 0.42352942, b: 0.2509804, a: 0}
+    iconColor: {r: 0.6117647, g: 0.42352942, b: 0.2509804, a: 1}
     amount: 0
   - name: Oak
-    purchasePrice: 0.88
+    buyPrice: 0.88
     sellPrice: 0
     unlocked: 0
     licensePrice: 500
     tier: 0
     icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.84705883, g: 0.70980394, b: 0.5372549, a: 0}
+    iconColor: {r: 0.84705883, g: 0.70980394, b: 0.5372549, a: 1}
     amount: 0
   - name: Maple
-    purchasePrice: 1.29
+    buyPrice: 1.29
     sellPrice: 0
     unlocked: 0
     licensePrice: 2500
     tier: 0
     icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.7294118, g: 0.49411765, b: 0.20784314, a: 0}
+    iconColor: {r: 0.7294118, g: 0.49411765, b: 0.20784314, a: 1}
     amount: 0
   materials: []
 --- !u!1 &1112483142

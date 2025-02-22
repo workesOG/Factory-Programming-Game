@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MoneyHandler : MonoBehaviour
+public class MoneyManager : MonoBehaviour
 {
     public TMP_Text moneyDisplay;
 
@@ -19,15 +19,15 @@ public class MoneyHandler : MonoBehaviour
         }
     }
 
-    private static MoneyHandler _instance;
+    private static MoneyManager _instance;
 
-    public static MoneyHandler Instance
+    public static MoneyManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<MoneyHandler>();
+                _instance = GameObject.FindObjectOfType<MoneyManager>();
             }
 
             return _instance;
