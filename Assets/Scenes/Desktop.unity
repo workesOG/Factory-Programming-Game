@@ -4187,7 +4187,18 @@ MonoBehaviour:
   - {fileID: 8572091856229964824, guid: b4e6d2a9cd7bb7c4fa13ed30efbf54d4, type: 3}
   - {fileID: 0}
   - {fileID: 2493311812644664320, guid: ff27335fad4175146ab5331b5b3d2c8f, type: 3}
+  indicators:
+  - {fileID: 1809367178}
+  - {fileID: 1826330608}
+  - {fileID: 2044483909}
+  - {fileID: 228831724}
+  - {fileID: 1114566152}
+  - {fileID: 238102195}
+  - {fileID: 1926032345}
+  - {fileID: 274500339}
+  - {fileID: 778262505}
   currentAppID: -1
+  cursorManager: {fileID: 491896911}
 --- !u!1 &1049695572
 GameObject:
   m_ObjectHideFlags: 0
@@ -4820,7 +4831,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -220, y: 0}
-  m_SizeDelta: {x: 1031.25, y: 70}
+  m_SizeDelta: {x: 950.21, y: 70}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1205308911
 MonoBehaviour:

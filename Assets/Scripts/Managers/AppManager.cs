@@ -1,16 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AppManager : MonoBehaviour
 {
     public Transform appWindow;
     public List<GameObject> applications;
+    public List<Indicator> indicators;
 
     public int currentAppID = -1;
     private List<OpenedApp> openedApps = new();
+    [SerializeField]
+    private CursorManager cursorManager;
 
     private static AppManager _instance;
     public static AppManager Instance
@@ -65,7 +70,6 @@ public class AppManager : MonoBehaviour
     public void ShowApp(int appID)
     {
         OpenedApp foundApp = OpenedApp.Find(appID, openedApps);
-        Debug.Log(foundApp);
         if (foundApp == null)
         {
             GameObject window = Instantiate(apps[appID], appWindow, true);
@@ -74,6 +78,7 @@ public class AppManager : MonoBehaviour
             rect.anchoredPosition = new Vector2(0, 0);
             rect.localScale = new Vector3(1, 1, 1);
             openedApps.Add(new OpenedApp(appID, window));
+            openedApps.Last().Show();
         }
         else
         {
@@ -83,8 +88,10 @@ public class AppManager : MonoBehaviour
         int oldAppID = currentAppID;
         currentAppID = appID;
 
-        if (oldAppID != -1)
+        if (oldAppID != -1 && oldAppID != appID)
             MinimizeApp(oldAppID);
+
+        indicators.Find(x => x.ID == appID).SetState(Indicator.State.Opened);
     }
 
     public void CloseApp(int appID)
@@ -102,6 +109,8 @@ public class AppManager : MonoBehaviour
         {
             ShowApp(openedApps.FirstOrDefault().appID);
         }
+
+        indicators.Find(x => x.ID == appID).SetState(Indicator.State.Unopened);
     }
 
     public void MinimizeApp(int appID)
@@ -114,6 +123,7 @@ public class AppManager : MonoBehaviour
         }
 
         foundApp.Hide();
+        indicators.Find(x => x.ID == appID).SetState(Indicator.State.Minimized);
     }
 
     private void HandleAppInitialization(int appID, Transform window)
@@ -143,6 +153,7 @@ public class AppManager : MonoBehaviour
                 ScriptManager.Instance.Initialize(window);
                 break;
         }
+        AssignCursorFunctions(window);
     }
 
     private void HandleAppOnShow(int appID)
@@ -170,8 +181,30 @@ public class AppManager : MonoBehaviour
                 break;
         }
     }
+
+    private void AssignCursorFunctions(Transform window)
+    {
+        EventTrigger et1 = window.Find("Top Beam/Minimize Background").GetComponent<EventTrigger>();
+        EventTrigger et2 = window.Find("Top Beam/Cross Background").GetComponent<EventTrigger>();
+
+        EventTrigger.Entry enterEntry = new EventTrigger.Entry();
+        enterEntry.eventID = EventTriggerType.PointerEnter;
+        enterEntry.callback.AddListener((data) => { cursorManager.OnButtonCursorEnter(); });
+
+        // Create Entry for Pointer Exit
+        EventTrigger.Entry exitEntry = new EventTrigger.Entry();
+        exitEntry.eventID = EventTriggerType.PointerExit;
+        exitEntry.callback.AddListener((data) => { cursorManager.OnButtonCursorExit(); });
+
+        // Add Entries to Event Trigger
+        et1.triggers.Add(enterEntry);
+        et1.triggers.Add(exitEntry);
+        et2.triggers.Add(enterEntry);
+        et2.triggers.Add(exitEntry);
+    }
 }
 
+[Serializable]
 public class OpenedApp
 {
     public int appID;

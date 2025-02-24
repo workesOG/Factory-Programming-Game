@@ -32,13 +32,19 @@ public class Indicator : MonoBehaviour
         switch (state)
         {
             case State.Unopened:
-                SetState(State.Opened);
+                Debug.Log("Unopened");
+                //SetState(State.Opened);
+                AppManager.Instance.ShowApp(ID);
                 break;
             case State.Minimized:
-                SetState(State.Opened);
+                Debug.Log("Minimized");
+                //SetState(State.Opened);
+                AppManager.Instance.ShowApp(ID);
                 break;
             case State.Opened:
-                SetState(State.Minimized);
+                Debug.Log("Opened");
+                //SetState(State.Minimized);
+                AppManager.Instance.MinimizeApp(ID);
                 break;
         }
     }
@@ -50,30 +56,27 @@ public class Indicator : MonoBehaviour
         switch (state)
         {
             case State.Unopened:
-                state = State.Unopened;
+                this.state = State.Unopened;
                 withAlpha = image.color;
                 nonAlpha = withAlpha;
                 nonAlpha.a = 0.0f;
                 image.color = nonAlpha;
-                AppManager.Instance.CloseApp(ID);
                 break;
             case State.Minimized:
-                state = State.Minimized;
+                this.state = State.Minimized;
                 nonAlpha = image.color;
                 withAlpha = nonAlpha;
                 withAlpha = minimized;
                 withAlpha.a = 1.0f;
-                AppManager.Instance.MinimizeApp(ID);
                 image.color = withAlpha;
                 break;
             case State.Opened:
-                state = State.Opened;
+                this.state = State.Opened;
                 nonAlpha = image.color;
                 withAlpha = nonAlpha;
                 withAlpha = opened;
                 withAlpha.a = 1.0f;
                 image.color = withAlpha;
-                AppManager.Instance.ShowApp(ID);
                 break;
         }
     }
