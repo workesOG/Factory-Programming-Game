@@ -4,8 +4,13 @@ using System;
 
 public class LuaInitializer : MonoBehaviour
 {
+    private bool doTest;
+
     void Start()
     {
+        if (!doTest)
+            return;
+
         // Create a new Lua script environment
         Script luaScript = new Script();
         luaScript.Options.DebugPrint = s => Debug.Log(s);
