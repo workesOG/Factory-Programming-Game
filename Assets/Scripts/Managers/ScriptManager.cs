@@ -163,7 +163,6 @@ public class ScriptManager : MonoBehaviour
         return $"Successfully renamed script {name} to {newName}";
     }
 
-
     public List<string> GetScripts()
     {
         return Directory.GetFiles(scriptDirPath)
@@ -177,6 +176,7 @@ public class ScriptManager : MonoBehaviour
         if (!File.Exists(path))
             return string.Empty;
 
+        Debug.Log(path);
         return File.ReadAllText(path);
     }
 }
