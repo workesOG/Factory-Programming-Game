@@ -1169,13 +1169,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 07/02/2025
   m_isRightToLeft: 0
-<<<<<<< Updated upstream
   m_fontAsset: {fileID: 11400000, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
   m_sharedMaterial: {fileID: 6718912738477439107, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
-=======
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
->>>>>>> Stashed changes
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3764,13 +3759,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12.31
   m_isRightToLeft: 0
-<<<<<<< Updated upstream
   m_fontAsset: {fileID: 11400000, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
   m_sharedMaterial: {fileID: 6718912738477439107, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
-=======
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
->>>>>>> Stashed changes
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4675,8 +4665,6 @@ GameObject:
   - component: {fileID: 1081515212}
   - component: {fileID: 1081515215}
   - component: {fileID: 1081515213}
-  - component: {fileID: 1081515217}
-  - component: {fileID: 1081515216}
   m_Layer: 0
   m_Name: ManagerObject
   m_TagString: Untagged
@@ -4809,31 +4797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec258692e0dc3e245a13194e8b7df7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1081515216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081515208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b24deab49e352346843034403592a90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1081515217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081515208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba71c9173c256d740b537a678c66a82d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coroutineManager: {fileID: 1081515216}
 --- !u!1 &1112483142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,13 +5156,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: $666
   m_isRightToLeft: 0
-<<<<<<< Updated upstream
   m_fontAsset: {fileID: 11400000, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
   m_sharedMaterial: {fileID: 6718912738477439107, guid: aa70d9d56c216cb4687db7373970652c, type: 2}
-=======
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
->>>>>>> Stashed changes
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

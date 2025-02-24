@@ -186,7 +186,7 @@ public class ConsoleManager : MonoBehaviour
         commands.Add(new Command()
         {
             baseCommand = "run",
-            description = "Executes a script as a coroutine",
+            description = "Executes a script",
             syntax = "run <script>*",
             evaluationFunc = (parameters, syntax) =>
             {
@@ -197,17 +197,12 @@ public class ConsoleManager : MonoBehaviour
                 if (!scripts.Contains(parameters[0]))
                     return $"Script \"{parameters[0]}\" could not be found";
 
-                string scriptContent = ScriptManager.Instance.GetScript(parameters[0]);
-
-                // Use the coroutine-based LuaScriptRunner to execute the script.
-                // This runner creates a new Lua environment, registers the fs API (including fs.sleep), creates a coroutine,
-                // and registers it with the central LuaCoroutineManager.
-                LuaScriptRunner.Instance.RunScript(scriptContent);
+                //Actually run the script
 
                 return $"Started execution of script \"{parameters[0]}\"";
             }
-        });
 
+        });
     }
 }
 
