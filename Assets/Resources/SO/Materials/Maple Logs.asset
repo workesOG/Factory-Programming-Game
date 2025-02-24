@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81d70090fdba454dac4322370aa7588, type: 3}
+  m_Name: Maple Logs
+  m_EditorClassIdentifier: 
+  materialName: Maple Logs
+  materialType: 0
+  icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
+  iconColor: {r: 0.7294118, g: 0.49411765, b: 0.20784314, a: 0}
+  buyPrice: 1.29
+  licensePrice: 0
+  sellPrice: 0
+  unlocked: 0
+  recipe:
+    ingredients: []
+    outputAmount: 1
+    processingTime: 0
