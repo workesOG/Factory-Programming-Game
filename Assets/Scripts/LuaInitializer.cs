@@ -1,33 +1,25 @@
 using UnityEngine;
 using MoonSharp.Interpreter;
+using System;
 
 public class LuaInitializer : MonoBehaviour
 {
     void Start()
     {
-        // Initialize the Lua script
-        string luaScript = @"
-            function greet()
-                print('Hello from Lua!')
-            end
+        // Create a new Lua script environment
+        Script luaScript = new Script();
+        luaScript.Options.DebugPrint = s => Debug.Log(s);
 
-            greet()
-        ";
+        // Create a new Lua table to serve as the fs module
+        Table fsTable = new Table(luaScript);
 
-        // Create a new MoonSharp script instance
-        Script script = new Script();
+        // Assign the fs.print function to the delegate pointing to FactoryScriptAPI.print
+        fsTable["print"] = (Action<string>)FactoryScriptAPI.print;
 
-        // Redirect Lua's print function to Unity's Debug.Log
-        script.Options.DebugPrint = s => Debug.Log(s);
+        // Register the fs table in the global namespace
+        luaScript.Globals["fs"] = fsTable;
 
-        try
-        {
-            // Execute the Lua script
-            script.DoString(luaScript);
-        }
-        catch (ScriptRuntimeException ex)
-        {
-            Debug.LogError($"Lua error: {ex.Message}");
-        }
+        // Test the function: this should call ConsoleManager.Print and output to the in-game console
+        luaScript.DoString("fs.print('Hello from fs.print!')");
     }
 }

@@ -183,6 +183,26 @@ public class ConsoleManager : MonoBehaviour
             }
 
         });
+        commands.Add(new Command()
+        {
+            baseCommand = "run",
+            description = "Executes a script",
+            syntax = "run <script>*",
+            evaluationFunc = (parameters, syntax) =>
+            {
+                if (parameters.Length != 1)
+                    return $"Invalid syntax, correct syntax is: {syntax}";
+
+                List<string> scripts = ScriptManager.Instance.GetScripts();
+                if (!scripts.Contains(parameters[0]))
+                    return $"Script \"{parameters[0]}\" could not be found";
+
+                //Actually run the script
+
+                return $"Started execution of script \"{parameters[0]}\"";
+            }
+
+        });
     }
 }
 

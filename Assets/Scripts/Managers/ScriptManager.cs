@@ -170,4 +170,13 @@ public class ScriptManager : MonoBehaviour
     .Select(path => Path.GetFileName(path))
     .ToList();
     }
+
+    public string GetScript(string name)
+    {
+        string path = Path.Combine(scriptDirPath, name);
+        if (!File.Exists(path))
+            return string.Empty;
+
+        return File.ReadAllText(path);
+    }
 }
