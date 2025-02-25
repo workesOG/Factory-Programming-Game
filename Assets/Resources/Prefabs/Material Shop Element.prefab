@@ -264,8 +264,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <Price>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -474,8 +474,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Selling Price:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 6890434691908834519}
   - component: {fileID: 2355345414308315758}
   - component: {fileID: 2681067499336461624}
+  - component: {fileID: 7192765531329590013}
   m_Layer: 5
   m_Name: Material Shop Element
   m_TagString: Untagged
@@ -621,7 +622,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1.85
 --- !u!114 &2355345414308315758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +650,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841d6b080d5b55f4487c3374676ec4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7192765531329590013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4229346580892506654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &4649797813201833801
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,8 +730,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <Resource>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -991,8 +1005,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Buying Price:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1125,8 +1139,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1259,8 +1273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <Price>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
-  m_sharedMaterial: {fileID: -3136713288108518385, guid: ff5bbcea17ff04043a1734993e120a05, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

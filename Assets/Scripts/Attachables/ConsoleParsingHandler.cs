@@ -13,7 +13,7 @@ public class ConsoleParsingHandler : MonoBehaviour
 
     void SubmitCommand(string text)
     {
-        if (text.EndsWith("\n"))
+        if (text.Contains("\n"))
         {
             string command = text.Replace("\n", "");
             inputField.text = string.Empty;

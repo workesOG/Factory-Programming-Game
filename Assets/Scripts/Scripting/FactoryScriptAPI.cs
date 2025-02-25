@@ -1,21 +1,18 @@
 using System;
 using MoonSharp.Interpreter;
+using UnityEngine;
 
 public static class FactoryScriptAPI
 {
-    // Registers all fs API functions into the provided Lua script
     public static void Register(Script luaScript)
     {
         Table fsTable = new Table(luaScript);
 
-        // Register fs.print as a CLR callback
-        fsTable["print"] = (Action<string>)print;
+        fsTable["print"] = (Action<string>)Print;
+        fsTable["buyMats"] = (Action<string, int>)BuyMats;
 
-        // Expose the table first
         luaScript.Globals["fs"] = fsTable;
 
-        // Override fs.sleep with a Lua implementation to allow yielding.
-        // This defines fs.sleep as a Lua function that yields the provided seconds.
         luaScript.DoString(@"
             fs.sleep = function(secs)
                 return coroutine.yield(secs)
@@ -23,9 +20,22 @@ public static class FactoryScriptAPI
         ");
     }
 
-    // fs.print implementation: simply sends text to the in-game console.
-    public static void print(string text)
+    public static void Print(string text)
     {
         ConsoleManager.Print(text);
+    }
+
+    public static void BuyMats(string name, int amount)
+    {
+        MaterialSO material = MaterialsManager.Instance.GetMaterial(name);
+        if (material == null)
+            ConsoleManager.Print($"Cound not find material {name}");
+
+        double totalPrice = material.buyPrice * amount;
+        if (!(MoneyManager.Instance.Money >= totalPrice))
+            ConsoleManager.Print($"Cannot afford {amount} {name}");
+
+        MoneyManager.Instance.Money -= totalPrice;
+        MaterialsManager.Instance.GetMaterial(name).Add(amount);
     }
 }

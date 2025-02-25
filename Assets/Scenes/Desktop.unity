@@ -4362,6 +4362,7 @@ GameObject:
   - component: {fileID: 1081515214}
   - component: {fileID: 1081515209}
   - component: {fileID: 1081515212}
+  - component: {fileID: 1081515218}
   - component: {fileID: 1081515215}
   - component: {fileID: 1081515213}
   - component: {fileID: 1081515217}
@@ -4432,61 +4433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef977b116e11bcd4898fc4a8b235be89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMaterials:
-  - name: Pine Logs
-    buyPrice: 0.23
-    sellPrice: 0
-    unlocked: 1
-    licensePrice: 0
-    tier: 0
-    icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.6117647, g: 0.42352942, b: 0.2509804, a: 1}
-    amount: 0
-  - name: Oak Logs
-    buyPrice: 0.88
-    sellPrice: 0
-    unlocked: 0
-    licensePrice: 500
-    tier: 0
-    icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.84705883, g: 0.70980394, b: 0.5372549, a: 1}
-    amount: 0
-  - name: Maple Logs
-    buyPrice: 1.29
-    sellPrice: 0
-    unlocked: 0
-    licensePrice: 2500
-    tier: 0
-    icon: {fileID: 21300000, guid: 0070df7b8f2d903459e13e8fd479f205, type: 3}
-    iconColor: {r: 0.7294118, g: 0.49411765, b: 0.20784314, a: 1}
-    amount: 0
-  - name: Pine Planks
-    buyPrice: 0
-    sellPrice: 0.5
-    unlocked: 1
-    licensePrice: 0
-    tier: 1
-    icon: {fileID: 21300000, guid: 0a3670dbd957aa346bf1c765dfa2c2fb, type: 3}
-    iconColor: {r: 0.6117647, g: 0.42352945, b: 0.2509804, a: 1}
-    amount: 0
-  - name: Oak Planks
-    buyPrice: 0
-    sellPrice: 1.85
-    unlocked: 0
-    licensePrice: 5000
-    tier: 1
-    icon: {fileID: 21300000, guid: 0a3670dbd957aa346bf1c765dfa2c2fb, type: 3}
-    iconColor: {r: 0.8470589, g: 0.70980394, b: 0.5372549, a: 1}
-    amount: 0
-  - name: Maple Planks
-    buyPrice: 0
-    sellPrice: 0
-    unlocked: 0
-    licensePrice: 2500
-    tier: 0
-    icon: {fileID: 21300000, guid: 0a3670dbd957aa346bf1c765dfa2c2fb, type: 3}
-    iconColor: {r: 0.7294118, g: 0.49411765, b: 0.20784314, a: 1}
-    amount: 0
   materials: []
 --- !u!114 &1081515213
 MonoBehaviour:
@@ -4547,6 +4493,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba71c9173c256d740b537a678c66a82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1081515218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081515208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daaa8e9a12c32fd449196980450103aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1112483142

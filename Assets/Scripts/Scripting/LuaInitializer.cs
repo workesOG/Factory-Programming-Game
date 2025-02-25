@@ -19,7 +19,7 @@ public class LuaInitializer : MonoBehaviour
         Table fsTable = new Table(luaScript);
 
         // Assign the fs.print function to the delegate pointing to FactoryScriptAPI.print
-        fsTable["print"] = (Action<string>)FactoryScriptAPI.print;
+        fsTable["print"] = (Action<string>)FactoryScriptAPI.Print;
 
         // Register the fs table in the global namespace
         luaScript.Globals["fs"] = fsTable;

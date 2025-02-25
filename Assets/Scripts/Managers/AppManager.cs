@@ -141,6 +141,7 @@ public class AppManager : MonoBehaviour
             case 3:
                 break;
             case 4:
+                WarehouseManager.Instance.Initialize(window);
                 break;
             case 5:
                 break;

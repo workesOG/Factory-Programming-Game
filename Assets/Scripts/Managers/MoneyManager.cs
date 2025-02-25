@@ -11,7 +11,7 @@ public class MoneyManager : MonoBehaviour
     private double _money;
     public double Money
     {
-        get { return Math.Floor(_money); }
+        get { return _money; }
         set
         {
             _money = value;
@@ -37,6 +37,6 @@ public class MoneyManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        Money = 0;
+        Money = 100;
     }
 }

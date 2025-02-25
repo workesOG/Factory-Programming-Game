@@ -28,6 +28,28 @@ public class MaterialSO : ScriptableObject
     [Header("Recipe (Processed Only)")]
     // Leave this null for raw materials.
     public MaterialRecipe recipe;
+
+    [HideInInspector]
+    public int amount = 0;
+
+    [Header("Order ID (Lowest displayed first)")]
+    public int sortingID;
+
+    public void Add(int number)
+    {
+        amount += number;
+        Debug.Log("Here");
+    }
+
+    public void Remove(int number)
+    {
+        amount = Math.Max(amount - number, 0);
+    }
+
+    public void Set(int number)
+    {
+        amount = number;
+    }
 }
 
 [Serializable]

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -69,17 +70,50 @@ public class ConsoleManager : MonoBehaviour
     public static void ParseCommand(string text)
     {
         string baseCommand = text.Split(" ")[0];
-        List<string> parameterList = text.Split(" ").ToList();
-        parameterList.RemoveAt(0);
-        string[] parameters = parameterList.ToArray();
 
-        List<Command> commands = Instance.commands;
-        foreach (Command command in commands)
+        if (baseCommand == "exec")
         {
-            if (baseCommand == command.baseCommand)
-                ConsoleManager.Print(command.EvaluateAndExecute(parameters));
+            int firstQuote = text.IndexOf('\'');
+            int lastQuote = text.LastIndexOf('\'');
+
+            if (firstQuote != -1 && lastQuote > firstQuote)
+            {
+                string codeParameter = text.Substring(firstQuote + 1, lastQuote - firstQuote - 1);
+                List<Command> commands = Instance.commands;
+                foreach (Command command in commands)
+                {
+                    if (baseCommand == command.baseCommand)
+                    {
+                        Debug.Log(codeParameter);
+                        ConsoleManager.Print(command.EvaluateAndExecute(new string[] { codeParameter }));
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                ConsoleManager.Print("Error: exec command must enclose the Lua code in single quotes.");
+                return;
+            }
+        }
+        else
+        {
+            List<string> parameterList = text.Split(" ").ToList();
+            parameterList.RemoveAt(0);
+            string[] parameters = parameterList.ToArray();
+
+            List<Command> commands = Instance.commands;
+            foreach (Command command in commands)
+            {
+                if (baseCommand == command.baseCommand)
+                {
+                    ConsoleManager.Print(command.EvaluateAndExecute(parameters));
+                    break;
+                }
+            }
         }
     }
+
 
     public static void Print(string text)
     {
@@ -134,6 +168,30 @@ public class ConsoleManager : MonoBehaviour
         });
         commands.Add(new Command()
         {
+            baseCommand = "run",
+            description = "Executes a script as a coroutine",
+            syntax = "run <script>*",
+            evaluationFunc = (parameters, syntax) =>
+            {
+                if (parameters.Length != 1)
+                    return $"Invalid syntax, correct syntax is: {syntax}";
+
+                List<string> scripts = ScriptManager.Instance.GetScripts();
+                if (!scripts.Contains(parameters[0]))
+                    return $"Script \"{parameters[0]}\" could not be found";
+
+                string scriptContent = ScriptManager.Instance.GetScript(parameters[0]);
+
+                // Use the coroutine-based LuaScriptRunner to execute the script.
+                // This runner creates a new Lua environment, registers the fs API (including fs.sleep), creates a coroutine,
+                // and registers it with the central LuaCoroutineManager.
+                LuaScriptRunner.Instance.RunScript(scriptContent);
+
+                return $"Started execution of script \"{parameters[0]}\"";
+            }
+        });
+        commands.Add(new Command()
+        {
             baseCommand = "rm",
             description = "Used to delete a script. Needs full name with \".lua\" extension",
             syntax = "rm <file name>*",
@@ -185,26 +243,23 @@ public class ConsoleManager : MonoBehaviour
         });
         commands.Add(new Command()
         {
-            baseCommand = "run",
-            description = "Executes a script as a coroutine",
-            syntax = "run <script>*",
+            baseCommand = "exec",
+            description = "Executes a Lua code snippet provided in quotes",
+            syntax = "exec \"<lua code>\"",
             evaluationFunc = (parameters, syntax) =>
             {
                 if (parameters.Length != 1)
                     return $"Invalid syntax, correct syntax is: {syntax}";
 
-                List<string> scripts = ScriptManager.Instance.GetScripts();
-                if (!scripts.Contains(parameters[0]))
-                    return $"Script \"{parameters[0]}\" could not be found";
+                string code = parameters[0];
+                if (code.StartsWith("'") && code.EndsWith("'"))
+                {
+                    code = code.Substring(1, code.Length - 2);
+                }
 
-                string scriptContent = ScriptManager.Instance.GetScript(parameters[0]);
+                LuaScriptRunner.Instance.RunScript(code);
 
-                // Use the coroutine-based LuaScriptRunner to execute the script.
-                // This runner creates a new Lua environment, registers the fs API (including fs.sleep), creates a coroutine,
-                // and registers it with the central LuaCoroutineManager.
-                LuaScriptRunner.Instance.RunScript(scriptContent);
-
-                return $"Started execution of script \"{parameters[0]}\"";
+                return string.Empty;
             }
         });
 

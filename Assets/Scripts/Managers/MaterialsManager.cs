@@ -1,22 +1,16 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MaterialsManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<Material> gameMaterials;
     private Transform materialWindow;
-    private Dictionary<Material.Tier, Button> buttonMap;
+    private Dictionary<MaterialType, Button> buttonMap;
+    private List<GameObject> loadedMaterialShopElements = new List<GameObject>();
 
-    private List<GameObject> loadedMaterialShopElements = new();
-
-    [HideInInspector]
-    public List<Material> materials;
+    // List of all materials loaded from Resources.
+    public List<MaterialSO> materials = new List<MaterialSO>();
 
     private static MaterialsManager _instance;
     public static MaterialsManager Instance
@@ -24,10 +18,7 @@ public class MaterialsManager : MonoBehaviour
         get
         {
             if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<MaterialsManager>();
-            }
-
+                _instance = FindObjectOfType<MaterialsManager>();
             return _instance;
         }
     }
@@ -35,70 +26,74 @@ public class MaterialsManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        materials = gameMaterials;
+        // Load all MaterialSO assets from the Resources/Materials folder.
+        materials = Resources.LoadAll<MaterialSO>("SO/Materials").ToList();
+        materials = materials.OrderBy(x => x.sortingID).ToList();
     }
 
     public void Initialize(Transform windowTransform)
     {
         materialWindow = windowTransform.Find("Materials Window/Main Scroll/Viewport/Content");
-        buttonMap = new Dictionary<Material.Tier, Button>
+
+        buttonMap = new Dictionary<MaterialType, Button>
         {
-            { Material.Tier.Tier1, windowTransform.Find("Categories/Tier 1").GetComponent<Button>()},
-            { Material.Tier.Tier2, windowTransform.Find("Categories/Tier 2").GetComponent<Button>()},
-            { Material.Tier.Tier3, windowTransform.Find("Categories/Tier 3").GetComponent<Button>()},
+            { MaterialType.Raw, windowTransform.Find("Categories/Raw").GetComponent<Button>() },
+            { MaterialType.Processed, windowTransform.Find("Categories/Processed").GetComponent<Button>() }
         };
+
         foreach (var kvp in buttonMap)
         {
-            kvp.Value.onClick.AddListener(() => { LoadMaterials(kvp.Key); });
+            MaterialType type = kvp.Key;
+            kvp.Value.onClick.AddListener(() => { LoadMaterials(type); });
         }
-        LoadMaterials(Material.Tier.Tier1);
+
+        LoadMaterials(MaterialType.Raw);
     }
 
-    private void LoadMaterials(Material.Tier category)
+    public MaterialSO GetMaterial(string name)
+    {
+        return materials.Find(x => x.name == name);
+    }
+
+    private void LoadMaterials(MaterialType type)
     {
         foreach (GameObject go in loadedMaterialShopElements)
             Destroy(go);
-
         loadedMaterialShopElements.Clear();
 
-        List<Material> materialsToDisplay = materials.Where(x => x.tier == category).ToList();
+        List<MaterialSO> materialsToDisplay = materials.Where(x => x.materialType == type).ToList();
+
         GameObject prefab = Resources.Load<GameObject>("Prefabs/Material Shop Element");
-        foreach (Material material in materialsToDisplay)
+        foreach (MaterialSO mat in materialsToDisplay)
         {
             GameObject go = Instantiate(prefab, materialWindow);
+            // Your MaterialShopElement should now accept a MaterialSO.
             MaterialShopElement component = go.GetComponent<MaterialShopElement>();
-            component.Initialize(material);
+            component.Initialize(mat);
             loadedMaterialShopElements.Add(go);
         }
 
         foreach (var kvp in buttonMap)
+            kvp.Value.interactable = kvp.Key != type;
+    }
+
+    public void UpdateProcessedMaterialsUnlockStatus()
+    {
+        foreach (MaterialSO mat in materials)
         {
-            if (kvp.Key == category)
-                kvp.Value.interactable = false;
-            else
-                kvp.Value.interactable = true;
+            if (mat.materialType == MaterialType.Processed && mat.recipe != null)
+            {
+                bool allIngredientsUnlocked = true;
+                foreach (RecipeIngredient ingredient in mat.recipe.ingredients)
+                {
+                    if (ingredient.inputMaterial == null || !ingredient.inputMaterial.unlocked)
+                    {
+                        allIngredientsUnlocked = false;
+                        break;
+                    }
+                }
+                mat.unlocked = allIngredientsUnlocked;
+            }
         }
     }
-}
-
-[Serializable]
-public class Material
-{
-    public enum Tier
-    {
-        Tier1,
-        Tier2,
-        Tier3
-    }
-
-    public string name;
-    public double buyPrice;
-    public double sellPrice;
-    public bool unlocked;
-    public double licensePrice;
-    public Tier tier;
-    public Sprite icon;
-    public Color iconColor;
-
-    public int amount;
 }
