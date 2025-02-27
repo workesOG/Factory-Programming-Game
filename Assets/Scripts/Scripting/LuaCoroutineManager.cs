@@ -24,14 +24,12 @@ public class LuaCoroutineManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Represents a running Lua script coroutine
     public class RunningLuaScript
     {
         public MoonSharp.Interpreter.Coroutine Coroutine;
         public float ResumeTime; // Time when this coroutine should be resumed
     }
 
-    // List of active Lua script coroutines
     private List<RunningLuaScript> runningScripts = new List<RunningLuaScript>();
 
     /// <summary>
@@ -57,20 +55,17 @@ public class LuaCoroutineManager : MonoBehaviour
         {
             if (currentTime >= script.ResumeTime)
             {
-                // Resume the coroutine
                 DynValue result = script.Coroutine.Resume();
-                Debug.Log($"Resuming coroutine; result type: {result.Type}");
+                //Debug.Log($"Resuming coroutine; result type: {result.Type}");
 
                 double waitTime = 0;
                 bool yielded = false;
 
-                // If the result is a number, that’s our wait time.
                 if (result.Type == DataType.Number)
                 {
                     waitTime = result.Number;
                     yielded = true;
                 }
-                // Otherwise, if it’s a YieldRequest, extract the wait time.
                 else if (result.Type == DataType.YieldRequest &&
                          result.YieldRequest != null &&
                          result.YieldRequest.ReturnValues != null &&

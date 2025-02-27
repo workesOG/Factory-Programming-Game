@@ -9,7 +9,6 @@ public class MaterialsManager : MonoBehaviour
     private Dictionary<MaterialType, Button> buttonMap;
     private List<GameObject> loadedMaterialShopElements = new List<GameObject>();
 
-    // List of all materials loaded from Resources.
     public List<MaterialSO> materials = new List<MaterialSO>();
 
     private static MaterialsManager _instance;
@@ -26,9 +25,9 @@ public class MaterialsManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        // Load all MaterialSO assets from the Resources/Materials folder.
         materials = Resources.LoadAll<MaterialSO>("SO/Materials").ToList();
         materials = materials.OrderBy(x => x.sortingID).ToList();
+        ResetMaterials();
     }
 
     public void Initialize(Transform windowTransform)
@@ -52,7 +51,7 @@ public class MaterialsManager : MonoBehaviour
 
     public MaterialSO GetMaterial(string name)
     {
-        return materials.Find(x => x.name == name);
+        return materials.Find(x => x.materialName == name);
     }
 
     private void LoadMaterials(MaterialType type)
@@ -67,7 +66,6 @@ public class MaterialsManager : MonoBehaviour
         foreach (MaterialSO mat in materialsToDisplay)
         {
             GameObject go = Instantiate(prefab, materialWindow);
-            // Your MaterialShopElement should now accept a MaterialSO.
             MaterialShopElement component = go.GetComponent<MaterialShopElement>();
             component.Initialize(mat);
             loadedMaterialShopElements.Add(go);
@@ -75,6 +73,18 @@ public class MaterialsManager : MonoBehaviour
 
         foreach (var kvp in buttonMap)
             kvp.Value.interactable = kvp.Key != type;
+    }
+
+    private void ResetMaterials()
+    {
+        foreach (MaterialSO mat in materials)
+        {
+            mat.amount = 0;
+            if (mat.name != "Pine Logs")
+                mat.unlocked = false;
+
+            UpdateProcessedMaterialsUnlockStatus();
+        }
     }
 
     public void UpdateProcessedMaterialsUnlockStatus()

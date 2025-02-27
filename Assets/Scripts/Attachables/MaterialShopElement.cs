@@ -11,7 +11,7 @@ public class MaterialShopElement : MonoBehaviour
 
     public void Initialize(MaterialSO material)
     {
-        transform.Find("Top Beam/Name").GetComponent<TMP_Text>().text = material.name;
+        transform.Find("Top Beam/Name").GetComponent<TMP_Text>().text = material.materialName;
         transform.Find("Descriptors/Buying Price/Price").GetComponent<TMP_Text>().text = material.buyPrice <= 0 ? "N/A" : $"${material.buyPrice:f2}";
         transform.Find("Descriptors/Selling Price/Price").GetComponent<TMP_Text>().text = material.sellPrice <= 0 ? "N/A" : $"${material.sellPrice:f2}";
         Image icon = transform.Find("Icon Panel/Icon").GetComponent<Image>();
